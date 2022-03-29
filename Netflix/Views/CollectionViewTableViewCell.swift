@@ -8,14 +8,15 @@
 import UIKit
 
 class CollectionViewTableViewCell: UITableViewCell {
-
+    private var title :[SearchResponse] = [SearchResponse]()
+   
 static let identifier = "CollectionViewTableViewCell"
     private let collectioView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 140, height: 200)
         layout.scrollDirection = .horizontal
         let collectioView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectioView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectioView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         return collectioView
     }()
     
@@ -35,6 +36,9 @@ static let identifier = "CollectionViewTableViewCell"
         super.layoutSubviews()
         collectioView.frame = contentView.bounds
     }
+    public func configure(with title: MovieResult){
+       
+    }
     override func prepareForReuse() {
         super.prepareForReuse()
     }
@@ -47,8 +51,9 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .gray
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         return cell
     
     
