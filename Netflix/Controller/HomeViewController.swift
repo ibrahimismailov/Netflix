@@ -9,13 +9,12 @@ enum Section: Int {
     case tradingTV = 1
     case popular = 2
     case coming = 3
-    case topRated = 4
+  
 }
-
 import UIKit
 class HomeViewController: UIViewController {
-    var movieList : [MovieResult] = []
-    let sectionTitles: [String] = ["Trending Movies","Trending TV","Popular","UpComing Movies","Top rated"]
+  
+    let sectionTitles: [String] = ["Trending Movies","Trending TV","Popular","UpComing Movies"]
     private let homeFeedTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
@@ -43,6 +42,7 @@ class HomeViewController: UIViewController {
         ]
         navigationController?.navigationBar.tintColor = .white
     }
+    
     private func concigureHeaderView(){
         let headerView = HeroHeaderUIview(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
         homeFeedTableView.tableHeaderView = headerView
@@ -64,22 +64,47 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
-//        switch indexPath.section {
-//        case Section.tradingMovies.rawValue:
-//            APICaller.shared.getTradingMovies(urlString: "\(Constants.baseURL)") { result in
-//                switch result {
-//                case.success(let titles):
-//                    cell.configure(with: titles)
-//                case.failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        case Section.tradingTV.rawValue:
-//        case Section.popular.rawValue:
-//        case Section.topRated.rawValue:
-//            
-//            
-//        }
+        switch indexPath.section {
+            
+        case Section.tradingMovies.rawValue:
+            APICaller.shared.getTradingMovies { result in
+                switch result {
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let errors):
+                    print(errors.localizedDescription)
+                }
+            }
+        case Section.tradingTV.rawValue:
+            APICaller.shared.getTradingTv { result in
+                switch result {
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let errors):
+                    print(errors.localizedDescription)
+                }
+            }
+        case Section.popular.rawValue:
+            APICaller.shared.getPopular { result in
+                switch result{
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let errors):
+                    print(errors.localizedDescription)
+                }
+            }
+        case Section.coming.rawValue:
+            APICaller.shared.getComing { result in
+                switch result {
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let errors):
+                    print(errors.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

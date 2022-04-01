@@ -10,8 +10,8 @@ struct Constants {
     static let API_KEY = "k_az1ipaoz"
     static let baseURL = "https://imdb-api.com/API/Search/k_az1ipaoz/star"
     static let baseURLTV = "https://imdb-api.com/en/API/SearchSeries/k_az1ipaoz/lost"
-    static let basePopularMovies = "https://imdb-api.com/en/API/MostPopularTVs/k_az1ipaoz"
-    static let baseUpComing = "https://imdb-api.com/en/API/ComingSoon/k_az1ipaoz"
+    static let basePopularMovies = "https://imdb-api.com/en/API/InTheaters/k_az1ipaoz"
+    static let baseUpComing = "https://imdb-api.com/en/API/SearchMovie/k_az1ipaoz/inception 2010"
     
 }
 enum ApiError: Error {
@@ -19,8 +19,8 @@ enum ApiError: Error {
 }
 class APICaller {
     static let shared = APICaller()
-    func getTradingMovies(urlString:String,complition:@escaping(Result<SearchResponse,Error>) ->Void ){
-        guard let url = URL(string: urlString) else {return}
+    func getTradingMovies(complition:@escaping(Result<[Title],Error>) ->Void ){
+        guard let url = URL(string: "\(Constants.baseURL)") else {return}
     URLSession.shared.dataTask(with: url) { (data,response,error) in
         DispatchQueue.main.async {
             if let error = error {
@@ -30,9 +30,9 @@ class APICaller {
             }
             guard let data = data else {return}
             do {
-                let movies = try JSONDecoder().decode(SearchResponse.self, from: data)
-                complition(.success(movies))
-                print(movies.results[0].title)
+                let result = try JSONDecoder().decode(TitleResponse.self, from: data)
+              
+                complition(.success(result.results))
                 
             }catch  {
                 complition(.failure(ApiError.failedTogedData))
@@ -41,7 +41,7 @@ class APICaller {
     }.resume()
 }
     
-    func getTradingTv(urlString:String,complition:@escaping(Result<[Tv],Error>) ->Void ){
+    func getTradingTv(complition:@escaping(Result<[Title],Error>) ->Void ){
         guard let url = URL(string: "\(Constants.baseURLTV)") else {return}
         URLSession.shared.dataTask(with: url) { (data,response,error) in
             DispatchQueue.main.async {
@@ -52,10 +52,9 @@ class APICaller {
                 }
                 guard let data = data else {return}
                 do {
-                    let movies = try JSONDecoder().decode(MoviesTv.self, from: data)
-                    complition(.success(movies.results))
-                    print(movies.results[0].id)
-                    print(movies)
+                    let result = try JSONDecoder().decode(TitleResponse.self, from: data)
+                    complition(.success(result.results))
+                 
                 }catch  {
                     complition(.failure(ApiError.failedTogedData))
                 }
@@ -63,7 +62,7 @@ class APICaller {
         }.resume()
     }
     
-    func getPopular(urlString:String,complition:@escaping(Result<[ComeMovie],Error>) ->Void ){
+    func getPopular(complition:@escaping(Result<[Title],Error>) ->Void ){
         guard let url = URL(string: "\(Constants.basePopularMovies)") else {return}
         URLSession.shared.dataTask(with: url) { (data,response,error) in
             DispatchQueue.main.async {
@@ -74,21 +73,17 @@ class APICaller {
                 }
                 guard let data = data else {return}
                 do {
-                    let movies = try JSONDecoder().decode(Coming.self, from: data)
-                    complition(.success(movies.items))
-                    print(movies.items[0].title)
-                    print("oldu")
-                   
-                }catch {
+                    let result = try JSONDecoder().decode(TitleResponse.self, from: data)
+                    complition(.success(result.results))
+                 
+                }catch  {
                     complition(.failure(ApiError.failedTogedData))
                 }
-                
             }
         }.resume()
-
     }
-    func getComing(urlString:String,complition:@escaping(Result<[Pop],Error>) ->Void ){
-        guard let url = URL(string: "\(Constants.basePopularMovies)") else {return}
+    func getComing(complition:@escaping(Result<[Title],Error>) ->Void ){
+        guard let url = URL(string: "\(Constants.baseUpComing)") else {return}
         URLSession.shared.dataTask(with: url) { (data,response,error) in
             DispatchQueue.main.async {
                 if let error = error {
@@ -99,10 +94,9 @@ class APICaller {
                 }
                 guard let data = data else {return}
                 do {
-                    let movies = try JSONDecoder().decode(MoviesPop.self, from: data)
-                    complition(.success(movies.items))
-                    print(movies.items[0].title)
-                    print("oldu")
+                    let result = try JSONDecoder().decode(TitleResponse.self, from: data)
+                    complition(.success(result.results))
+                 
                 }catch {
                     complition(.failure(ApiError.failedTogedData))
                 }

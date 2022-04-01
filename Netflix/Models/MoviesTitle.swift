@@ -7,12 +7,12 @@
 
 import Foundation
 import UIKit
-struct SearchResponse:Decodable {
+struct TitleResponse:Decodable {
     var searchType:String
     var expression:String
-    var results:[MovieResult]
+    var results:[Title]
 }
-struct MovieResult:Decodable {
+struct Title:Decodable {
     var id:String
     var resultType:String
     var image:String

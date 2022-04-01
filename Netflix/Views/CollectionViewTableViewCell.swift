@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionViewTableViewCell: UITableViewCell {
-    private var title :[SearchResponse] = [SearchResponse]()
+    private var titles:[Title] = [Title]()
    
 static let identifier = "CollectionViewTableViewCell"
     private let collectioView: UICollectionView = {
@@ -36,26 +36,27 @@ static let identifier = "CollectionViewTableViewCell"
         super.layoutSubviews()
         collectioView.frame = contentView.bounds
     }
-    public func configure(with title: MovieResult){
-       
+    public func configure(with titles: [Title]){
+        self.titles = titles
+        DispatchQueue.main.async {[weak self] in
+            self?.collectioView.reloadData()
+        }
     }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
+
     
 }
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.configure(with: titles[indexPath.row].image)
         return cell
-    
-    
 }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return titles.count
+    }
+    
 }

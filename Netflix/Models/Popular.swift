@@ -7,7 +7,7 @@
 
 import Foundation
 struct MoviesPop: Codable {
-    let items: [Pop]
+    let results: [Pop]
     let errorMessage: String
 }
 
