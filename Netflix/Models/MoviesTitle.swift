@@ -7,20 +7,27 @@
 
 import Foundation
 import UIKit
-struct TitleResponse:Decodable {
-    var searchType:String
-    var expression:String
-    var results:[Title]
+
+
+// MARK: - TitleResponse
+struct TitleResponse: Codable {
+    let searchType, expression: String
+    let results: [Title]
+    let errorMessage: String
 }
-struct Title:Decodable {
-    var id:String
-    var resultType:String
-    var image:String
-    var title:String
-    var description:String
+
+// MARK: - Title
+struct Title: Codable {
+    let id, resultType: String
+    let image: String
+    let title, resultDescription: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, resultType, image, title
+        case resultDescription = "description"
+    }
 }
-struct ErrorMessage {
-    var errorMessage:String
-}
+
+
 
 

@@ -13,7 +13,8 @@ enum Section: Int {
 }
 import UIKit
 class HomeViewController: UIViewController {
-  
+
+    var customView:MovieListView!
     let sectionTitles: [String] = ["Trending Movies","Trending TV","Popular","UpComing Movies"]
     private let homeFeedTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -65,45 +66,47 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         switch indexPath.section {
-            
         case Section.tradingMovies.rawValue:
             APICaller.shared.getTradingMovies { result in
                 switch result {
-                case.success(let titles):
-                    cell.configure(with: titles)
-                case.failure(let errors):
-                    print(errors.localizedDescription)
+                case.success(let title):
+                    cell.configure(with: title)
+                case.failure(let error):
+                    print("Wrong")
+                    print(error.localizedDescription)
                 }
             }
         case Section.tradingTV.rawValue:
             APICaller.shared.getTradingTv { result in
                 switch result {
-                case.success(let titles):
-                    cell.configure(with: titles)
-                case.failure(let errors):
-                    print(errors.localizedDescription)
+                case.success(let title):
+                    cell.configure(with: title)
+                case.failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         case Section.popular.rawValue:
             APICaller.shared.getPopular { result in
-                switch result{
-                case.success(let titles):
-                    cell.configure(with: titles)
-                case.failure(let errors):
-                    print(errors.localizedDescription)
+                switch result {
+                case.success(let title):
+                    cell.configure(with: title)
+                case.failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         case Section.coming.rawValue:
             APICaller.shared.getComing { result in
                 switch result {
-                case.success(let titles):
-                    cell.configure(with: titles)
-                case.failure(let errors):
-                    print(errors.localizedDescription)
+                case.success(let title):
+                    cell.configure(with: title)
+                case.failure(let error):
+                    print(error.localizedDescription)
                 }
             }
+            
         default:
             return UITableViewCell()
+            
         }
         return cell
     }
@@ -130,3 +133,5 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
+
+

@@ -61,8 +61,9 @@ class TitleTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(titleLabelConstraint)
         NSLayoutConstraint.activate(titlePlayButtonConstraint)
     }
-    public func configure(with model: TitleViewModel) {
-        guard  let url  = URL(string: "https://imdb-api.com/en/API/SearchMovie/k_az1ipaoz/\(model.image)") else { return }
+    public func configure(with model: TitleViewModelPresentation) {
+        guard  let url  = URL(string: model.image) else { return }
+
        
        titlePosterImageView.sd_setImage(with: url,completed: nil)
         titleLabel.text = model.title

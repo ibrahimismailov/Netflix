@@ -53,7 +53,8 @@ extension ComingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.identifier, for: indexPath) as? TitleTableViewCell else{
             return UITableViewCell()
         }
-        cell.configure(with: TitleViewModel(image: titles[indexPath.row].image, title: titles[indexPath.row].title))
+        let title = titles[indexPath.row]
+        cell.configure(with: TitleViewModelPresentation(image: title.image, title: title.title))
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

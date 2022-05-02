@@ -31,8 +31,9 @@ class TitleCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with model: String){
-        guard  let url  = URL(string: "https://imdb-api.com/en/API/SearchMovie/k_az1ipaoz/\(model)") else { return }
+        guard let url = URL(string: model) else { return }
         postImageView.sd_setImage(with: url,completed: nil)
+        print(model)
         
     }
 }

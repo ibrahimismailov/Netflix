@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1502332727FC35CC00704B91 /* MovieListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502332627FC35CC00704B91 /* MovieListContract.swift */; };
+		1502332927FC385400704B91 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502332827FC385400704B91 /* MovieListView.swift */; };
 		153EEE3227F722EA00B31E2B /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EEE3127F722EA00B31E2B /* TitleTableViewCell.swift */; };
-		153EEE3427F725F400B31E2B /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EEE3327F725F400B31E2B /* TitleViewModel.swift */; };
+		153EEE3427F725F400B31E2B /* TitleViewModelPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EEE3327F725F400B31E2B /* TitleViewModelPresentation.swift */; };
 		15EAF8BE27F1B2030076084F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAF8BD27F1B2030076084F /* AppDelegate.swift */; };
 		15EAF8C027F1B2030076084F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAF8BF27F1B2030076084F /* SceneDelegate.swift */; };
 		15EAF8C227F1B2030076084F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAF8C127F1B2030076084F /* MainTabBarViewController.swift */; };
@@ -54,8 +55,9 @@
 /* Begin PBXFileReference section */
 		138A535BE8C1C7377DC4BA23 /* Pods_Netflix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netflix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1502332627FC35CC00704B91 /* MovieListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListContract.swift; sourceTree = "<group>"; };
+		1502332827FC385400704B91 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		153EEE3127F722EA00B31E2B /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
-		153EEE3327F725F400B31E2B /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleViewModel.swift; path = Netflix/Views/TitleViewModel.swift; sourceTree = SOURCE_ROOT; };
+		153EEE3327F725F400B31E2B /* TitleViewModelPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleViewModelPresentation.swift; path = Netflix/Views/TitleViewModelPresentation.swift; sourceTree = SOURCE_ROOT; };
 		15EAF8BA27F1B2030076084F /* Netflix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netflix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EAF8BD27F1B2030076084F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15EAF8BF27F1B2030076084F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				1502332627FC35CC00704B91 /* MovieListContract.swift */,
+				1502332827FC385400704B91 /* MovieListView.swift */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -215,7 +218,7 @@
 		15EAF8F727F1B86B0076084F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				153EEE3327F725F400B31E2B /* TitleViewModel.swift */,
+				153EEE3327F725F400B31E2B /* TitleViewModelPresentation.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				153EEE3227F722EA00B31E2B /* TitleTableViewCell.swift in Sources */,
 				15EAF8F127F1B3630076084F /* SearchViewController.swift in Sources */,
 				15EAF90C27F314200076084F /* TitleCollectionViewCell.swift in Sources */,
+				1502332927FC385400704B91 /* MovieListView.swift in Sources */,
 				15EAF90227F212080076084F /* MoviesTitle.swift in Sources */,
 				15EAF8C227F1B2030076084F /* MainTabBarViewController.swift in Sources */,
 				15EAF8FC27F1B8EB0076084F /* CollectionViewTableViewCell.swift in Sources */,
@@ -524,7 +528,7 @@
 				1502332727FC35CC00704B91 /* MovieListContract.swift in Sources */,
 				15EAF8C027F1B2030076084F /* SceneDelegate.swift in Sources */,
 				15EAF8EF27F1B3590076084F /* HomeViewController.swift in Sources */,
-				153EEE3427F725F400B31E2B /* TitleViewModel.swift in Sources */,
+				153EEE3427F725F400B31E2B /* TitleViewModelPresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
