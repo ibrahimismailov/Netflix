@@ -82,8 +82,8 @@ class APICaller {
             }
         }.resume()
     }
-    func getComing(complition:@escaping(Result<[Title],Error>) ->Void ){
-        guard let url = URL(string: "https://imdb-api.com/API/SearchKeyword/k_az1ipaoz/love") else {return}
+    func getComingMovies(complition:@escaping(Result<[Title],Error>) ->Void ){
+        guard let url = URL(string: "https://imdb-api.com/API/SearchEpisode/k_az1ipaoz/love") else {return}
         URLSession.shared.dataTask(with: url) { (data,response,error) in
             DispatchQueue.main.async {
                 if let error = error {

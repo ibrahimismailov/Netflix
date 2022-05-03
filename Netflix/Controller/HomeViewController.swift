@@ -8,14 +8,14 @@ enum Section: Int {
     case tradingMovies = 0
     case tradingTV = 1
     case popular = 2
-    case coming = 3
+    case comingSoon = 3
   
 }
 import UIKit
 class HomeViewController: UIViewController {
 
     var customView:MovieListView!
-    let sectionTitles: [String] = ["Trending Movies","Trending TV","Popular","UpComing Movies"]
+    let sectionTitles: [String] = ["Trending Movies","Trending TV","Popular","comingSoon"]
     private let homeFeedTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
@@ -94,8 +94,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                     print(error.localizedDescription)
                 }
             }
-        case Section.coming.rawValue:
-            APICaller.shared.getComing { result in
+        case Section.comingSoon.rawValue:
+            APICaller.shared.getComingMovies { result in
                 switch result {
                 case.success(let title):
                     cell.configure(with: title)

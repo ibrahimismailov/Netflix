@@ -46,16 +46,14 @@ class TitleTableViewCell: UITableViewCell {
             titlePosterImageView.widthAnchor.constraint(equalToConstant: 100)
         ]
         let titleLabelConstraint = [
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -20),
+            titleLabel.trailingAnchor.constraint(equalTo: titlePosterImageView.trailingAnchor,constant: 20),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
-            titleLabel.widthAnchor.constraint(equalToConstant: 100)
+
         ]
         let titlePlayButtonConstraint = [
-            titlePlayButton.leadingAnchor.constraint(equalTo: titlePosterImageView.trailingAnchor,constant: 20),
-            titlePlayButton.topAnchor.constraint(equalTo: contentView.centerYAnchor),
-            titlePlayButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
-            titlePlayButton.widthAnchor.constraint(equalToConstant: 100)
+            titlePlayButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -20),
+            titlePlayButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+
         ]
         NSLayoutConstraint.activate(imageViewConstraint)
         NSLayoutConstraint.activate(titleLabelConstraint)
@@ -63,7 +61,6 @@ class TitleTableViewCell: UITableViewCell {
     }
     public func configure(with model: TitleViewModelPresentation) {
         guard  let url  = URL(string: model.image) else { return }
-
        
        titlePosterImageView.sd_setImage(with: url,completed: nil)
         titleLabel.text = model.title

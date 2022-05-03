@@ -9,6 +9,7 @@ import UIKit
 
 class CollectionViewTableViewCell: UITableViewCell {
     private var titles:[Title] = [Title]()
+
 static let identifier = "CollectionViewTableViewCell"
     private let collectioView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -41,6 +42,8 @@ static let identifier = "CollectionViewTableViewCell"
             self?.collectioView.reloadData()
         }
     }
+
+    
   
     }
   

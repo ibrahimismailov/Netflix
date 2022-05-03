@@ -9,6 +9,7 @@ import UIKit
 
 class ComingViewController: UIViewController {
     private var titles:[Title] = [Title]()
+   
     private let upcomingTable: UITableView = {
         let tableView  = UITableView()
         tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
@@ -30,7 +31,7 @@ class ComingViewController: UIViewController {
         upcomingTable.frame = view.bounds
     }
     private func fetchUpComing(){
-        APICaller.shared.getComing { [weak self] result in
+        APICaller.shared.getComingMovies { [weak self] result in
             switch result {
             case.success(let titles):
                 self?.titles = titles
