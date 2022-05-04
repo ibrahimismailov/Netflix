@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         homeFeedTableView.dataSource = self
         concigureHeaderView()
         configureNavBar()
-     
+      
     }
 
 
@@ -66,6 +66,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         switch indexPath.section {
         case Section.tradingMovies.rawValue:
             APICaller.shared.getTradingMovies { result in
@@ -135,4 +136,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            let vc = TitlePreviewViewController()
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+   
+    }
+    
+    
+}
