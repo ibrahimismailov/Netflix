@@ -42,10 +42,8 @@ static let identifier = "CollectionViewTableViewCell"
             self?.collectioView.reloadData()
         }
     }
-
     
-  
-    }
+}
   
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -62,6 +60,19 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+      
+        let title = titles[indexPath.row]
+        let titleName = title.title
+        APICaller.shared.getMovies(with: titleName + "trailer") { result in
+            switch result {
+            case.success(let videoElement):
+                print(videoElement.id)
+            case.failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+   
     }
+    
     
 }

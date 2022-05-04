@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         homeFeedTableView.dataSource = self
         concigureHeaderView()
         configureNavBar()
+     
     }
 
 

@@ -17,6 +17,7 @@ class TitleTableViewCell: UITableViewCell {
     private let titlePosterImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         return imageView
     }()
     private let titlePlayButton: UIButton = {
@@ -43,10 +44,10 @@ class TitleTableViewCell: UITableViewCell {
             titlePosterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titlePosterImageView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 15),
             titlePosterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
-            titlePosterImageView.widthAnchor.constraint(equalToConstant: 100)
+            titlePosterImageView.widthAnchor.constraint(equalToConstant: 60)
         ]
         let titleLabelConstraint = [
-            titleLabel.trailingAnchor.constraint(equalTo: titlePosterImageView.trailingAnchor,constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: titlePosterImageView.trailingAnchor,constant: 20),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
         ]
@@ -63,6 +64,7 @@ class TitleTableViewCell: UITableViewCell {
         guard  let url  = URL(string: model.image) else { return }
        
        titlePosterImageView.sd_setImage(with: url,completed: nil)
+        titlePosterImageView.image = UIImage(named: model.image)
         titleLabel.text = model.title
     }
     

@@ -11,6 +11,8 @@
 		1502332927FC385400704B91 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502332827FC385400704B91 /* MovieListView.swift */; };
 		153EEE3227F722EA00B31E2B /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EEE3127F722EA00B31E2B /* TitleTableViewCell.swift */; };
 		153EEE3427F725F400B31E2B /* TitleViewModelPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EEE3327F725F400B31E2B /* TitleViewModelPresentation.swift */; };
+		15A81617282276BE004D105E /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A81616282276BE004D105E /* SearchResultsViewController.swift */; };
+		15A8161B28228A03004D105E /* YoutubeSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8161A28228A03004D105E /* YoutubeSearchResult.swift */; };
 		15EAF8BE27F1B2030076084F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAF8BD27F1B2030076084F /* AppDelegate.swift */; };
 		15EAF8C027F1B2030076084F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAF8BF27F1B2030076084F /* SceneDelegate.swift */; };
 		15EAF8C227F1B2030076084F /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAF8C127F1B2030076084F /* MainTabBarViewController.swift */; };
@@ -58,6 +60,8 @@
 		1502332827FC385400704B91 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		153EEE3127F722EA00B31E2B /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		153EEE3327F725F400B31E2B /* TitleViewModelPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleViewModelPresentation.swift; path = Netflix/Views/TitleViewModelPresentation.swift; sourceTree = SOURCE_ROOT; };
+		15A81616282276BE004D105E /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		15A8161A28228A03004D105E /* YoutubeSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResult.swift; sourceTree = "<group>"; };
 		15EAF8BA27F1B2030076084F /* Netflix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netflix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EAF8BD27F1B2030076084F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15EAF8BF27F1B2030076084F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,26 @@
 			path = MovieList;
 			sourceTree = "<group>";
 		};
+		15A81618282276E8004D105E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				15EAF8C127F1B2030076084F /* MainTabBarViewController.swift */,
+				15EAF8EE27F1B3590076084F /* HomeViewController.swift */,
+				15EAF8F227F1B38A0076084F /* ComingViewController.swift */,
+				15EAF8F027F1B3630076084F /* SearchViewController.swift */,
+				15EAF8F427F1B3A40076084F /* DownloadsViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		15A8161928227727004D105E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				15A81616282276BE004D105E /* SearchResultsViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		15EAF8B127F1B2030076084F = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +194,6 @@
 				15EAF8ED27F1B3460076084F /* Controller */,
 				15EAF8BD27F1B2030076084F /* AppDelegate.swift */,
 				15EAF8BF27F1B2030076084F /* SceneDelegate.swift */,
-				15EAF8C127F1B2030076084F /* MainTabBarViewController.swift */,
 				15EAF8C327F1B2030076084F /* Main.storyboard */,
 				15EAF8C627F1B20C0076084F /* Assets.xcassets */,
 				15EAF8C827F1B20C0076084F /* LaunchScreen.storyboard */,
@@ -199,10 +222,8 @@
 		15EAF8ED27F1B3460076084F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				15EAF8EE27F1B3590076084F /* HomeViewController.swift */,
-				15EAF8F027F1B3630076084F /* SearchViewController.swift */,
-				15EAF8F227F1B38A0076084F /* ComingViewController.swift */,
-				15EAF8F427F1B3A40076084F /* DownloadsViewController.swift */,
+				15A8161928227727004D105E /* General */,
+				15A81618282276E8004D105E /* Core */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				15EAF90127F212080076084F /* MoviesTitle.swift */,
+				15A8161A28228A03004D105E /* YoutubeSearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -519,6 +541,8 @@
 				15EAF90227F212080076084F /* MoviesTitle.swift in Sources */,
 				15EAF8C227F1B2030076084F /* MainTabBarViewController.swift in Sources */,
 				15EAF8FC27F1B8EB0076084F /* CollectionViewTableViewCell.swift in Sources */,
+				15A81617282276BE004D105E /* SearchResultsViewController.swift in Sources */,
+				15A8161B28228A03004D105E /* YoutubeSearchResult.swift in Sources */,
 				15EAF90027F20C940076084F /* APICaller.swift in Sources */,
 				15EAF8F527F1B3A40076084F /* DownloadsViewController.swift in Sources */,
 				15EAF8BE27F1B2030076084F /* AppDelegate.swift in Sources */,
