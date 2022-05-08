@@ -12,11 +12,14 @@ class TitleTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     private let titlePosterImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -48,6 +51,7 @@ class TitleTableViewCell: UITableViewCell {
         ]
         let titleLabelConstraint = [
             titleLabel.leadingAnchor.constraint(equalTo: titlePosterImageView.trailingAnchor,constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
         ]
@@ -61,10 +65,10 @@ class TitleTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(titlePlayButtonConstraint)
     }
     public func configure(with model: TitleViewModelPresentation) {
+   
         guard  let url  = URL(string: model.image) else { return }
-       
        titlePosterImageView.sd_setImage(with: url,completed: nil)
-        titlePosterImageView.image = UIImage(named: model.image)
+       titlePosterImageView.image = UIImage(named: model.image)
         titleLabel.text = model.title
     }
     

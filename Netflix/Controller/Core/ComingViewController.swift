@@ -31,7 +31,7 @@ class ComingViewController: UIViewController {
         upcomingTable.frame = view.bounds
     }
     private func fetchUpComing(){
-        APICaller.shared.getComingMovies { [weak self] result in
+        APICaller.shared.getPopular { [weak self] result in
             switch result {
             case.success(let titles):
                 self?.titles = titles
@@ -55,11 +55,32 @@ extension ComingViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let title = titles[indexPath.row]
-        cell.configure(with: TitleViewModelPresentation(image: title.image, title: title.title))
+        cell.configure(with: TitleViewModelPresentation(image: title.image , title: title.title))
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let title = titles[indexPath.row]
+        
+        APICaller.shared.getMovies(with: title.title) { result in
+            switch result {
+            case.success(let videoElement):
+                DispatchQueue.main.async {
+                    let vc = TitlePreviewViewController()
+                    vc.configure(with: TitlePreviewViewModel(title: title.title, youtubeView: videoElement, titleOverView: title.resultType))
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+   
+            case.failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+      
+                
+        
     }
     
 }

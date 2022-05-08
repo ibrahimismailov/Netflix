@@ -29,9 +29,8 @@ class HeroHeaderUIview: UIView {
     
     private let heroImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "movie")
         return imageView
     }()
     private func addGradient(){
@@ -68,6 +67,11 @@ class HeroHeaderUIview: UIView {
         NSLayoutConstraint.activate(downloadButtonConstraints)
         
     }
+    public func configure(with model: TitleViewModelPresentation) {
+        guard  let url  = URL(string: model.image) else { return }
+       
+        heroImageView.sd_setImage(with: url,completed: nil)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,5 +80,6 @@ class HeroHeaderUIview: UIView {
         super.layoutSubviews()
         heroImageView.frame = bounds
     }
+  
     
 }

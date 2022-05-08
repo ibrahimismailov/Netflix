@@ -13,7 +13,8 @@ enum Section: Int {
 }
 import UIKit
 class HomeViewController: UIViewController {
-
+    private var randomTradingMovies: Title?
+    private var headerView: HeroHeaderUIview?
     var customView:MovieListView!
     let sectionTitles: [String] = ["Trending Movies","Trending TV","Popular","comingSoon"]
     private let homeFeedTableView: UITableView = {
@@ -30,6 +31,7 @@ class HomeViewController: UIViewController {
         homeFeedTableView.dataSource = self
         concigureHeaderView()
         configureNavBar()
+        concigureHeader()
       
     }
 
@@ -46,9 +48,23 @@ class HomeViewController: UIViewController {
     }
     
     private func concigureHeaderView(){
-        let headerView = HeroHeaderUIview(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
+         headerView = HeroHeaderUIview(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
         homeFeedTableView.tableHeaderView = headerView
     }
+    private func concigureHeader() {
+        APICaller.shared.getTradingMovies { [weak self] result in
+            switch result {
+            case.success(let titles):
+                self?.randomTradingMovies = titles.randomElement()
+                let selectedTitle = titles.randomElement()
+                
+                self?.headerView?.configure(with: TitleViewModelPresentation(image: selectedTitle?.image  ?? "" , title: selectedTitle?.title ?? selectedTitle?.resultType ?? ""))
+            case.failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTableView.frame = view.bounds

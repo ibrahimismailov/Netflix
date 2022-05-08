@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 struct TitleViewModelPresentation {
     let image: String
     let title: String
