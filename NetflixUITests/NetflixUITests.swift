@@ -1,3 +1,5 @@
+
+
 //
 //  NetflixUITests.swift
 //  NetflixUITests
@@ -26,8 +28,26 @@ class NetflixUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        
+        let app2 = app
+        let tablesQuery2 = app2.tables
+        let tablesQuery = tablesQuery2
+        tablesQuery.children(matching: .cell).element(boundBy: 1).tap()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        let tabBar = app.tabBars["Tab Bar"]
+        tabBar.buttons["Search"].tap()
+
+        let searchSearchField = app.navigationBars["Search"].searchFields["Search"]
+        searchSearchField.tap()
+        
+        tabBar.buttons["Download"].tap()
+        
+        let starTrekPicardCell = tablesQuery.cells.containing(.staticText, identifier:"Star Trek: Picard").element
+        starTrekPicardCell.swipeUp()
+        starTrekPicardCell.tap()
+
+
     }
 
     func testLaunchPerformance() throws {
